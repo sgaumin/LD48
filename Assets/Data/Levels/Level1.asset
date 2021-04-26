@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3602bb32f04c04bb0e10a35e343360, type: 3}
+  m_Name: Level1
+  m_EditorClassIdentifier: 
+  levelPrefab: {fileID: 3171637654650192590, guid: e9a82d11149c60b4eae0d82929d6e2c3,
+    type: 3}
+  finalPrefab: {fileID: 5726147110877733026, guid: a876bc525abf25744be5ec14a4cc9ea5,
+    type: 3}
+  starPrefab: {fileID: 5726147110877733026, guid: 9402605aa288e4948a553c99fbfbb1b4,
+    type: 3}
+  collectibleStats:
+  - collectiblePrefab: {fileID: 5726147110877733026, guid: acaf85fc11db81c4090ce61339ad5b32,
+      type: 3}
+    count: 15
+  - collectiblePrefab: {fileID: 5726147110877733026, guid: 8d957bdb4ed23da4ab1c67efe5e37197,
+      type: 3}
+    count: 15
+  - collectiblePrefab: {fileID: 5726147110877733026, guid: a2c57097af4389349b6bae2b967678da,
+      type: 3}
+    count: 15
+  - collectiblePrefab: {fileID: 5726147110877733026, guid: e4cd9487a6719754c8ea26077125f3d6,
+      type: 3}
+    count: 5
+  - collectiblePrefab: {fileID: 5726147110877733026, guid: 17d183205886d444f8fac90adf82aaa8,
+      type: 3}
+    count: 7
+  - collectiblePrefab: {fileID: 5726147110877733026, guid: 2cd397b957da5454a987d9aeeae29eed,
+      type: 3}
+    count: 9

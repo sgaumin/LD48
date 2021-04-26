@@ -41,6 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: GrappleRails
+    uniqueID: 2643221965
+    locked: 0
+  - name: GrappleLine
+    uniqueID: 180742791
+    locked: 0
+  - name: Collectibles
+    uniqueID: 1713870389
+    locked: 0
+  - name: Grapple
+    uniqueID: 2815777193
+    locked: 0
+  - name: HUD
+    uniqueID: 4146987285
+    locked: 0
   - name: Fader
     uniqueID: 1476709903
     locked: 0
