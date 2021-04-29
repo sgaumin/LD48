@@ -24,6 +24,8 @@ public class Level : GameSystem
 	[SerializeField] private Transform levelHolder;
 	[SerializeField] private FadScreen fader;
 	[SerializeField] private SpriteRenderer bestLine;
+	[SerializeField] private GameObject cameraObject;
+
 
 	private GameStates gameState;
 	private Coroutine loadingLevel;
@@ -73,6 +75,8 @@ public class Level : GameSystem
 	protected override void Update()
 	{
 		base.Update();
+
+		cameraObject.transform.position = cameraObject.transform.position.withX(0f);
 	}
 	#endregion
 
