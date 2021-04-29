@@ -147,8 +147,8 @@ public class Grapple : MonoBehaviour
 		Hud.Instance.UpdateDepth(Mathf.Abs(Mathf.FloorToInt(head.transform.position.y - startPosition.y)));
 
 		// Music
-		grappleMoveUnitSound.audioSource.volume = Mathf.Clamp01((float)Mathf.Abs(baseCurrentSpeed.x));
-		grappleFallUnitSound.audioSource.volume = Mathf.Clamp01((float)Mathf.Abs(headTargetDestinationY.y));
+		grappleMoveUnitSound.volume = Mathf.Clamp01((float)Mathf.Abs(baseCurrentSpeed.x));
+		grappleFallUnitSound.volume = Mathf.Clamp01((float)Mathf.Abs(headTargetDestinationY.y));
 	}
 
 	public void Collect(Collectible collectible)
