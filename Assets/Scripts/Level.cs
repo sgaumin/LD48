@@ -85,10 +85,15 @@ public class Level : GameSystem
 		click.Play();
 	}
 
-	public void RefreshLevel()
+	public void ClearCollectibles()
 	{
 		collectibles.ForEach(x => Destroy(x.gameObject));
 		collectibles.Clear();
+	}
+
+	public void RefreshLevel()
+	{
+		ClearCollectibles();
 
 		List<Collectible> collectibleToAssign = new List<Collectible>();
 		foreach (CollectibleStats stat in data.collectibleStats)
@@ -201,8 +206,7 @@ public class Level : GameSystem
 		PlayerPrefs.DeleteAll();
 		PlayerPrefs.Save();
 
-		Hud.Instance.UpdateCoin();
-		Hud.Instance.UpdateStars();
+		Hud.Instance.Refresh();
 
 		RefreshLevel();
 	}

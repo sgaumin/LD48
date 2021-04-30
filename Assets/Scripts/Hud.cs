@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hud : MonoBehaviour
 {
@@ -19,19 +20,26 @@ public class Hud : MonoBehaviour
 	[SerializeField] private CanvasGroup stats;
 	[SerializeField] private CanvasGroup buttons;
 	[SerializeField] private TextMeshProUGUI inputStartText;
+	[SerializeField] private Image wonImage;
 
 	protected void Start()
 	{
+		Refresh();
+		inputStartText.DOFade(0f, fadDurationInputText).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+	}
+
+	public void Refresh()
+	{
 		UpdateCoin();
 		UpdateStars();
-
-		inputStartText.DOFade(0f, fadDurationInputText).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+		wonImage.gameObject.SetActive(GameData.Final);
 	}
 
 	public void ShowStartButtons()
 	{
 		buttons.interactable = true;
 		buttons.DOFade(1f, fadDuration);
+		wonImage.gameObject.SetActive(GameData.Final);
 	}
 
 	public void HideStartButtons()

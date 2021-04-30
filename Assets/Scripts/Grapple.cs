@@ -12,6 +12,7 @@ public class Grapple : MonoBehaviour
 
 	[Header("Vertical Movements")]
 	[SerializeField] private float moveSpeedY = 1f;
+	[SerializeField] private float moveSpeedYEmpty = 2f;
 	[SerializeField] private float headSmoothTimeY = 0.3f;
 
 	[Header("Horizontal Movements")]
@@ -65,12 +66,17 @@ public class Grapple : MonoBehaviour
 	private int currentBlockPoints;
 	private int currentStoragePoints;
 	private Vector2 startPosition;
+	private float currentMoveSpeedY;
+	private bool fastClearDone;
+
+	public bool IsGoingBackToBaseEmpty() => Status == GrappleStatus.Up && collectibles.IsEmpty();
 
 	protected void Start()
 	{
 		Status = GrappleStatus.Base;
 		startPosition = head.transform.position;
 		line.positionCount = 2;
+		fastClearDone = false;
 
 		grappleMoveUnitSound = grappleMoveSound.Play();
 		grappleFallUnitSound = grappleFallSound.Play();
@@ -111,7 +117,8 @@ public class Grapple : MonoBehaviour
 		else
 		{
 			// Movements Head Y
-			destinationY = head.transform.position.withY(head.transform.position.y + (Status == GrappleStatus.Down ? -moveSpeedY : moveSpeedY));
+			currentMoveSpeedY = Status == GrappleStatus.Down ? -moveSpeedY : collectibles.IsEmpty() ? moveSpeedYEmpty : moveSpeedY;
+			destinationY = head.transform.position.withY(head.transform.position.y + currentMoveSpeedY);
 			headTargetDestinationY = Vector2.SmoothDamp(head.transform.position, head.transform.position.withY(destinationY.y), ref headCurrentSpeedY, headSmoothTimeY);
 			headTargetDestinationY = headTargetDestinationY.withY(Mathf.Clamp(headTargetDestinationY.y, GameData.Depth + startPosition.y - 0.2f, startPosition.y));
 			head.transform.position = head.transform.position.withY(headTargetDestinationY.y);
@@ -124,6 +131,13 @@ public class Grapple : MonoBehaviour
 			{
 				ArriveAtBase();
 			}
+
+			if (IsGoingBackToBaseEmpty() && !fastClearDone)
+			{
+				fastClearDone = true;
+				level.ClearCollectibles();
+			}
+
 		}
 
 		moveX = Input.GetAxisRaw("Horizontal");
@@ -257,10 +271,10 @@ public class Grapple : MonoBehaviour
 			switch (collectible.Data.type)
 			{
 				case CollectibleType.Coins:
-					GameData.Coins += collectible.Data.value;
+					GameData.Coins += Mathf.FloorToInt(collectible.Data.value * GameData.CoinsMulitplier);
 					break;
 				case CollectibleType.Star:
-					GameData.Stars += Mathf.FloorToInt(collectible.Data.value * GameData.CoinsMulitplier);
+					GameData.Stars += collectible.Data.value;
 
 					switch (collectible.DepthLevel)
 					{
@@ -277,7 +291,9 @@ public class Grapple : MonoBehaviour
 							GameData.StarLevel4 = true;
 							break;
 					}
-
+					break;
+				case CollectibleType.Final:
+					GameData.Final = true;
 					break;
 			}
 		}

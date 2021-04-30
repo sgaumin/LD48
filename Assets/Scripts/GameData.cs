@@ -4,6 +4,7 @@ public static class GameData
 {
 	private const int MIN_DEPTH = -25;
 
+	private const string FINAL = "final";
 	private const string COIN = "coin";
 	private const string COIN_MULTIPLIER = "coin_multiplier";
 	private const string STAR = "star";
@@ -19,6 +20,19 @@ public static class GameData
 	private const string BEST_DEPTH = "best_depth";
 	private const string SHOP_DEPTH = "shop_depth";
 	private const string SHOP_SPECIAL = "shop_special";
+
+	public static bool Final
+	{
+		get
+		{
+			return PlayerPrefs.HasKey(FINAL) ? bool.Parse(PlayerPrefs.GetString(FINAL)) : false;
+		}
+		set
+		{
+			PlayerPrefs.SetString(FINAL, value.ToString());
+			PlayerPrefs.Save();
+		}
+	}
 
 	public static int Coins
 	{

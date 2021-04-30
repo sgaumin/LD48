@@ -29,33 +29,37 @@ public class ShopPopup : MonoBehaviour
 			}
 
 			selectedItem = value;
-			buyButton.gameObject.SetActive(GameData.Coins >= selectedItem.Data.coinsCost && GameData.Stars >= selectedItem.Data.starsCost);
-			selectedItem.IsSelected = true;
-			description.text = selectedItem.Data.description;
-			coinsCostText.text = $"{selectedItem.Data.coinsCost}";
-			coinsCostText.color = GameData.Coins >= selectedItem.Data.coinsCost ? Color.white : unvalidCostColor;
-			starsCostText.gameObject.SetActive(true);
-			starsCostText.text = $"{selectedItem.Data.starsCost}";
-			starsCostText.color = GameData.Stars >= selectedItem.Data.starsCost ? Color.white : unvalidCostColor;
+
+			if (selectedItem != null)
+			{
+				buyButton.gameObject.SetActive(GameData.Coins >= selectedItem.Data.coinsCost && GameData.Stars >= selectedItem.Data.starsCost);
+				selectedItem.IsSelected = true;
+				description.text = selectedItem.Data.description;
+				coinsCostText.text = $"{selectedItem.Data.coinsCost}";
+				coinsCostText.color = GameData.Coins >= selectedItem.Data.coinsCost ? Color.white : unvalidCostColor;
+				starsCostText.gameObject.SetActive(true);
+				starsCostText.text = $"{selectedItem.Data.starsCost}";
+				starsCostText.color = GameData.Stars >= selectedItem.Data.starsCost ? Color.white : unvalidCostColor;
+			}
 		}
 	}
 
 	protected void Start()
 	{
 		Refresh();
-		buyButton.gameObject.SetActive(false);
 	}
 
 	private void OnEnable()
 	{
-		if (selectedItem != null)
-		{
-			SelectedItem = selectedItem;
-		}
+		Refresh();
 	}
 
 	private void Refresh()
 	{
+		coinsCostText.text = "0";
+		starsCostText.text = "0";
+		description.text = "";
+
 		foreach (ShopColumnHolder holder in holders)
 		{
 			int index = 0;
@@ -77,7 +81,7 @@ public class ShopPopup : MonoBehaviour
 
 			holder.ShopButtons.ForEach(x => x.ResetState());
 
-			for (int i = 0; i < index; i++)
+			for (int i = 0; i < Mathf.Min(index, holder.ShopButtons.Count); i++)
 			{
 				holder.ShopButtons[i].HasBeenBought = true;
 			}
@@ -87,6 +91,9 @@ public class ShopPopup : MonoBehaviour
 				holder.ShopButtons[i].IsBlocked = true;
 			}
 		}
+
+		SelectedItem = null;
+		buyButton.gameObject.SetActive(false);
 	}
 
 	public void SetDescription(string value)

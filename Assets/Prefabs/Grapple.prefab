@@ -1181,6 +1181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButtonName: Submit
   moveSpeedY: 1
+  moveSpeedYEmpty: 6
   headSmoothTimeY: 0.3
   baseSmoothTimeX: 0.15
   headSmoothTimeX: 0.3
