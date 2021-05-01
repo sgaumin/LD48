@@ -5,9 +5,14 @@ using System.Linq;
 using Tools;
 using Tools.Utils;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Level : GameSystem
 {
+	public const string GAME_MUSIC_VOLUME = "musicVolume";
+	public const string GAME_GRAPPLE_VOLUME = "grappleVolume";
+	public const string GAME_UI_VOLUME = "uiVolume";
+
 	public delegate void GameEventHandler();
 	public event GameEventHandler OnStart;
 	public event GameEventHandler OnGameOver;
@@ -17,6 +22,7 @@ public class Level : GameSystem
 	[SerializeField] private LevelData data;
 
 	[Header("Audio")]
+	[SerializeField] private AudioMixer mixer;
 	[SerializeField] private AudioExpress gameMusic;
 	[SerializeField] private AudioExpress click;
 
@@ -31,6 +37,9 @@ public class Level : GameSystem
 	private Coroutine loadingLevel;
 	private List<Collectible> collectibles = new List<Collectible>();
 	private GameObject currentlevel;
+	private float gameMusicVolume;
+	private float gameGrappleVolume;
+	private float gameUiVolume;
 
 	public GameStates GameState
 	{
@@ -55,6 +64,9 @@ public class Level : GameSystem
 			}
 		}
 	}
+	public float GameMusicVolume => Mathf.InverseLerp(-60f, 0f, gameMusicVolume);
+	public float GameGrappleVolume => Mathf.InverseLerp(-30f, 0f, gameGrappleVolume);
+	public float GameUiVolume => Mathf.InverseLerp(-25f, 0f, gameUiVolume);
 
 	#region Unity Callbacks
 	protected override void Awake()
@@ -66,6 +78,10 @@ public class Level : GameSystem
 	{
 		GameState = GameStates.Play;
 		fader.FadIn();
+
+		mixer.GetFloat(GAME_MUSIC_VOLUME, out gameMusicVolume);
+		mixer.GetFloat(GAME_GRAPPLE_VOLUME, out gameGrappleVolume);
+		mixer.GetFloat(GAME_UI_VOLUME, out gameUiVolume);
 
 		gameMusic.Play();
 
@@ -79,6 +95,24 @@ public class Level : GameSystem
 		cameraObject.transform.position = cameraObject.transform.position.withX(0f);
 	}
 	#endregion
+
+	public void UpdateGameMusicVolume(float percentage)
+	{
+		gameMusicVolume = Mathf.Lerp(-60f, 0f, percentage);
+		mixer.SetFloat(GAME_MUSIC_VOLUME, gameMusicVolume);
+	}
+
+	public void UpdateGameGrappleVolume(float percentage)
+	{
+		gameGrappleVolume = Mathf.Lerp(-30f, 0f, percentage);
+		mixer.SetFloat(GAME_GRAPPLE_VOLUME, gameGrappleVolume);
+	}
+
+	public void UpdateGameUiVolume(float percentage)
+	{
+		gameUiVolume = Mathf.Lerp(-25f, 0f, percentage);
+		mixer.SetFloat(GAME_UI_VOLUME, gameUiVolume);
+	}
 
 	public void ClickSound()
 	{

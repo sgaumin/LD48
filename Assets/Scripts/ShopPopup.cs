@@ -57,7 +57,9 @@ public class ShopPopup : MonoBehaviour
 	private void Refresh()
 	{
 		coinsCostText.text = "0";
+		coinsCostText.color = Color.white;
 		starsCostText.text = "0";
+		starsCostText.color = Color.white;
 		description.text = "";
 
 		foreach (ShopColumnHolder holder in holders)

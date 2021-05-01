@@ -227,14 +227,18 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 8d0d431663b3c2448ab3d928570093bd
+    name: grappleVolume
+  - guid: 027ab69861d084141ab0c823a994b230
+    name: musicVolume
+  - guid: af17df35bcda3424bb39edbfe09686f2
+    name: uiVolume
   m_AudioMixerGroupViews:
   - guids:
     - f326c17a9074aed40840f833facfe4e4
-    - 6a24976ad75fd1f4dae9d9ee3f7bfe3c
     - 9b344021f3545574384e56d201deebda
     - 5dc878f81c1f2194f829c57057adca6a
-    - 18c74c52b640e4540acfb715b2917a21
     - 473e363dfdc7ef8438754ae47f21a7c1
     - 472ce884cd87e9d49b689050469474f2
     - f9d0f3c7a1bf8b644ae3ed801ee908b4
@@ -256,10 +260,8 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: f326c17a9074aed40840f833facfe4e4
   m_Children:
-  - {fileID: 643015527760973562}
   - {fileID: -5620320283722996795}
   - {fileID: 4976536514687946930}
-  - {fileID: -706990728485806028}
   m_Volume: 8fb8d335a75f9bb48903ca7b15b8809c
   m_Pitch: 1a2c1c21e41ecd244b6394ed484878c6
   m_Send: 00000000000000000000000000000000
