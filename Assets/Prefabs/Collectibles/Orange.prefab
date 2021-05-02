@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 6563540237284966516, guid: ea469cef8e4f14e4ebc54b12ecf6af31,
         type: 3}
       propertyPath: m_Name
-      value: Pear
+      value: Orange
       objectReference: {fileID: 0}
     - target: {fileID: 6692289391381037120, guid: ea469cef8e4f14e4ebc54b12ecf6af31,
         type: 3}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2585bdc406aea469552b5eeeefadee, type: 3}
   m_Name: Dialogue 6
   m_EditorClassIdentifier: 
-  characterName: Maelys
+  characterName: "MA\xCBLYS"
   characterNameColor: {r: 0.9411765, g: 0.30980393, b: 0.47058824, a: 1}
   content: We have to go on the very bottom here!!
