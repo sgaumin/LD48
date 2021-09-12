@@ -1,5 +1,4 @@
 ﻿using Cinemachine;
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Tools.Utils;
@@ -21,9 +20,6 @@ public class Grapple : MonoBehaviour
 	[SerializeField] private float borderLimitX = 0.8f;
 
 	[Header("Animations")]
-	[SerializeField] private float collectMoveDuration = 0.2f;
-	[SerializeField] private Ease collectMoveEase = Ease.InBack;
-	[Space]
 	[SerializeField] private float shieldDestructionDuration = 0.6f;
 
 	[Header("Audio")]

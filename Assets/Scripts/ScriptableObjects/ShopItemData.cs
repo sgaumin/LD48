@@ -7,6 +7,7 @@ public class ShopItemData : ScriptableObject
 	public int shopIndex;
 	public float value;
 	public bool showValueOnButton;
+
 	[Space]
 	public Sprite sprite;
 	public int coinsCost;

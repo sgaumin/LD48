@@ -14,8 +14,11 @@ public class Level : GameSystem
 	public const string GAME_UI_VOLUME = "uiVolume";
 
 	public delegate void GameEventHandler();
+
 	public event GameEventHandler OnStart;
+
 	public event GameEventHandler OnGameOver;
+
 	public event GameEventHandler OnPause;
 
 	[Header("Level Parameters")]
@@ -31,7 +34,6 @@ public class Level : GameSystem
 	[SerializeField] private FadScreen fader;
 	[SerializeField] private SpriteRenderer bestLine;
 	[SerializeField] private GameObject cameraObject;
-
 
 	private GameStates gameState;
 	private Coroutine loadingLevel;
@@ -69,6 +71,7 @@ public class Level : GameSystem
 	public float GameUiVolume => Mathf.InverseLerp(-25f, 0f, gameUiVolume);
 
 	#region Unity Callbacks
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -94,7 +97,8 @@ public class Level : GameSystem
 
 		cameraObject.transform.position = cameraObject.transform.position.withX(0f);
 	}
-	#endregion
+
+	#endregion Unity Callbacks
 
 	public void UpdateGameMusicVolume(float percentage)
 	{
@@ -182,12 +186,15 @@ public class Level : GameSystem
 						case DepthLevels.Level1:
 							hasBeenCollected = GameData.StarLevel1;
 							break;
+
 						case DepthLevels.Level2:
 							hasBeenCollected = GameData.StarLevel2;
 							break;
+
 						case DepthLevels.Level3:
 							hasBeenCollected = GameData.StarLevel3;
 							break;
+
 						case DepthLevels.Level4:
 							hasBeenCollected = GameData.StarLevel4;
 							break;
@@ -251,6 +258,7 @@ public class Level : GameSystem
 	}
 
 	#region Level Loading Methods
+
 	public void ReloadLevel()
 	{
 		if (loadingLevel == null)
@@ -322,5 +330,6 @@ public class Level : GameSystem
 		yield return fader.FadOutCore();
 		content?.Invoke();
 	}
-	#endregion
+
+	#endregion Level Loading Methods
 }

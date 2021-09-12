@@ -70,12 +70,15 @@ public class ShopPopup : MonoBehaviour
 				case ShopItemType.Depth:
 					index = GameData.ShopDepth;
 					break;
+
 				case ShopItemType.Block:
 					index = GameData.ShopBlock;
 					break;
+
 				case ShopItemType.Storage:
 					index = GameData.ShopStorage;
 					break;
+
 				case ShopItemType.GoldMultiplier:
 					index = GameData.ShopGoldMultiplier;
 					break;
@@ -121,14 +124,17 @@ public class ShopPopup : MonoBehaviour
 					GameData.ShopDepth = selectedItem.Data.shopIndex;
 					GameData.Depth = (int)selectedItem.Data.value;
 					break;
+
 				case ShopItemType.Block:
 					GameData.ShopBlock = selectedItem.Data.shopIndex;
 					GameData.Block = (int)selectedItem.Data.value;
 					break;
+
 				case ShopItemType.Storage:
 					GameData.ShopStorage = selectedItem.Data.shopIndex;
 					GameData.Storage = (int)selectedItem.Data.value;
 					break;
+
 				case ShopItemType.GoldMultiplier:
 					GameData.ShopGoldMultiplier = selectedItem.Data.shopIndex;
 					break;
